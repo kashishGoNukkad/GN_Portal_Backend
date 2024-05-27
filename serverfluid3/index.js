@@ -19,7 +19,7 @@ app.use(cors({
 
 
 
-mongoose.connect('mongodb+srv://kashishjangid:kashishjangid123@cluster0.mbxux9e.mongodb.net/Fluid2', {
+mongoose.connect('mongodb+srv://kashishjangid:kashishjangid123@cluster0.mbxux9e.mongodb.net/Fluid3', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
