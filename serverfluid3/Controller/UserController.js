@@ -104,21 +104,21 @@ const userSignup = async (req, res) => {
               return res.status(400).json({ error: "Invalid password" });
           }
   
-          const accessToken = jwt.sign({ email: email }, "jwt-access-token-secret-key", { expiresIn: '30s' });
-          const refreshToken = jwt.sign({ email: email }, "jwt-refresh-token-secret-key", { expiresIn: '2m' });
+          const accessToken = jwt.sign({ email: email }, "jwt-access-token-secret-key", { expiresIn: '5m' });
+          const refreshToken = jwt.sign({ email: email }, "jwt-refresh-token-secret-key", { expiresIn: '10m' });
   
           
-          res.cookie('accessToken', accessToken, { maxAge: 30000, httpOnly: true });
+          res.cookie('accessToken', accessToken, { maxAge: 300000, httpOnly: true });
   
           
           res.cookie('refreshToken', refreshToken, {
-              maxAge: 120000,
+              maxAge: 600000,
               httpOnly: true,
               secure: false, 
               sameSite: 'strict'
           });
   
-          return res.json({ login: true });
+          return res.json({ login: true , Role:user.Role});
         }
         
     } catch (error) {

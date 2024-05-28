@@ -10,6 +10,7 @@ const sendEmail = async({res,email, emailType, userId})=>{
         const user = await RegisterModel.findOne({email:email})
 
         const hashedToken = await bcrypt.hash(userId.toString(), 10)
+        console.log("hashtoken",hashedToken)
         const hashedForgetToken = await bcrypt.hash(userId.toString(), 10)
         
         // const currentTime = new Date();
