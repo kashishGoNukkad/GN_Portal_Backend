@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const {sendEmail} = require('../Utils/Mailer')
 
 const createVendor = async (req, res) => {
-    const { username, email, mobile, password } = req.body;
+    const { username, email, phone, password } = req.body;
       try {
-          const missingField = !username ? 'username' : !email ? 'email' : !mobile ? 'mobile' : !password ? 'password' : null;
+          const missingField = !username ? 'username' : !email ? 'email' : !phone ? 'phone' : !password ? 'password' : null;
           if (missingField) return res.status(400).json({ msg: `${missingField} not provided` });
   
           const existingUser = await RegisterModel.findOne({email:email});
@@ -20,7 +20,7 @@ const createVendor = async (req, res) => {
           const newUser = await RegisterModel.create({
               username,
               email,
-              mobile,
+              phone,
               password: hashpassword,
               userInfo: {} 
           });
