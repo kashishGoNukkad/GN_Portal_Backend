@@ -48,6 +48,24 @@ const createVendor = async (req, res) => {
       }
   };
 
+  const Vendors = async (req, res)=>{
+    try {
+        const vendors = await RegisterModel.find();
+        if (vendors.length==0){
+            return res.status(200).json({msg:"No Vendors are available!"})
+        }
+        return res.status(200).json({
+            total:vendors.length,
+            vendors:vendors
+        })
+    } catch (error) {
+        return res.status(400).json({"error":error})
+    }
+
+  }
+
 module.exports = {
-    createVendor
+    createVendor,
+    Vendors
+
 };
