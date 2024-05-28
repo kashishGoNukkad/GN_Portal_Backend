@@ -21,6 +21,7 @@ const userSignup = async (req, res) => {
             username,
             email,
             password: hashpassword,
+            userInfo: {} 
         });
         const response  = {
             fullname: newUser.username,
@@ -60,6 +61,11 @@ const userSignup = async (req, res) => {
       if (!user) {
         return res.status(400).json({error: "Invalid token"})
     }
+
+      // const credentials = {
+      //   email:user.email,
+      //   password: user.password
+      // }
       console.log(user.isverified === 'false')
           if (user.isverified === 'true'){
             return res.status(200).json({msg: "Already Verified!", success:false})
@@ -69,7 +75,8 @@ const userSignup = async (req, res) => {
             await user.save();
             return res.json({
               message: "Email verified successfully",
-              success: true
+              success: true,
+              // credentials: credentials
             })
           }
 
