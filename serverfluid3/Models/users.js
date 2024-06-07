@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
 
 const userInfoSchema = new mongoose.Schema({
-  company_name: {
+
+  Buisness_Name: {
+    type: String,
+    default:""
+  },
+  
+  Buisness_Phone: {
     type: String,
     default:""
   },
@@ -22,8 +28,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  phone:{
-    type: Number,
+  mobile:{
+    type: String,
+    default:""
   },
   password: {
     type: String,
@@ -32,6 +39,10 @@ const userSchema = new mongoose.Schema({
   isverified: {
     type: String,
     default: 'false'
+  },
+  status:{
+    type:String,
+    default:'true'
   },
   isAdmin: {
     type: String,
@@ -55,8 +66,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'vendor', 'user'],
-    default: 'user'
+    
   },
   userInfo: {
     type: userInfoSchema,

@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser')
 const userroute = require('./Routes/UserRoutes')
 const DashRoute = require('./Routes/DashboardRoutes')
 const VendorRoute = require('./Routes/VendorRoutes')
+const EndUserRoute = require('./Routes/EndUserRoutes')
 
     
 
@@ -44,6 +45,7 @@ app.get('/', (req, res) => {
 app.use(userroute)
 app.use(DashRoute)
 app.use(VendorRoute)
+app.use(EndUserRoute)
 
 
 const PORT = process.env.PORT || 3001;
