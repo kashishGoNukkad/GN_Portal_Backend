@@ -92,6 +92,20 @@ const Vendors = async (req, res) => {
   }
 };
 
+const Vendor_By_id = async (req, res) => {
+ 
+  const {id} = req.params
+  
+  try {
+    const vendor = await RegisterModel.findOne({_id:id});
+    
+    if(!vendor) return res.json("not found")
+    return res.json({msg:"vendor", vendor:vendor})
+  } catch (error) {
+    return res.status(400).json({ error: error });
+  }
+};
+
 const editVendor = async (req, res) => {
   const { id } = req.params;
   const {
@@ -162,4 +176,5 @@ module.exports = {
   Vendors,
   editVendor,
   deleteVendor,
+  Vendor_By_id
 };

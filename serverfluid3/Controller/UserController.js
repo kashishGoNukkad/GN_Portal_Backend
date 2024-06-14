@@ -125,7 +125,7 @@ const userSignup = async (req, res) => {
               sameSite: 'strict'
           });
           // res.setHeader('Set-Cookie', `userRole=${user.role}; HttpOnly; Max-Age=3600`);
-          return res.json({ login: true , Role:user.role});
+          return res.json({ login: true , Role:user.role,_id:user._id});
         }
         
     } catch (error) {

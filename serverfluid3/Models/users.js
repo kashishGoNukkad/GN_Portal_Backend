@@ -14,7 +14,8 @@ const userInfoSchema = new mongoose.Schema({
   address: {
     type: String,
     default:""
-  }
+  },
+  
 }, { _id: false });
 
 
@@ -66,12 +67,16 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    
+    default:"user"
   },
   userInfo: {
     type: userInfoSchema,
     default: {}
-  }
+  },
+  services: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Service'
+  }]
 }, {
   collection: 'users',
   timestamps: true
