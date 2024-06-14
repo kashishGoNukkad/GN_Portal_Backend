@@ -8,8 +8,8 @@ const userroute = require('./Routes/UserRoutes')
 const DashRoute = require('./Routes/DashboardRoutes')
 const VendorRoute = require('./Routes/VendorRoutes')
 const EndUserRoute = require('./Routes/EndUserRoutes')
-
-    
+const ServiceRoutes = require('./Routes/ServiceRoute')
+const CustomerRoutes = require('./Routes/CustomerRoute')
 
 const app = express()
 app.use(express.json())
@@ -46,6 +46,8 @@ app.use(userroute)
 app.use(DashRoute)
 app.use(VendorRoute)
 app.use(EndUserRoute)
+app.use(ServiceRoutes)
+app.use(CustomerRoutes)
 
 
 const PORT = process.env.PORT || 3001;
