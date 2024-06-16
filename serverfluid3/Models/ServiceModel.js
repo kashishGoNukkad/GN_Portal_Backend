@@ -17,6 +17,20 @@ const serviceSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  address: {
+    type: String,
+    required:true
+  },
+  location: {
+    lat: {
+      type: Number,
+      required: true
+    },
+    lng: {
+      type: Number,
+      required: true
+    }
   }
 }, {
   collection: 'services',

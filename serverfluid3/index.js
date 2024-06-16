@@ -10,6 +10,7 @@ const VendorRoute = require('./Routes/VendorRoutes')
 const EndUserRoute = require('./Routes/EndUserRoutes')
 const ServiceRoutes = require('./Routes/ServiceRoute')
 const CustomerRoutes = require('./Routes/CustomerRoute')
+const SearchRoutes = require('./Routes/SearchRoute')
 
 const app = express()
 app.use(express.json())
@@ -48,6 +49,7 @@ app.use(VendorRoute)
 app.use(EndUserRoute)
 app.use(ServiceRoutes)
 app.use(CustomerRoutes)
+app.use(SearchRoutes)
 
 
 const PORT = process.env.PORT || 3001;
