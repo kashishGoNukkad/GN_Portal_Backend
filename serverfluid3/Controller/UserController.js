@@ -195,36 +195,43 @@ const forgotPassword = async (req,res)=>{
   }
 }
 
-const Logout = (req, res) => {
-  res.cookie('accessToken', "", { maxAge: 1000, httpOnly: true });
-
-        
-        res.cookie('refreshToken', "", {
-            maxAge: 1000,
-            httpOnly: true,
-            secure: false, 
-            sameSite: 'strict'
-        });
-
-        
-
-
-  return res.json({ msg: 'Logout successful' });
-};
 // const Logout = (req, res) => {
-//   res.clearCookie('accessToken', {
-//       httpOnly: true,
-//       secure: false,
-//       sameSite: 'strict',
-//   });
-//   res.clearCookie('refreshToken', {
-//       httpOnly: true,
-//       secure: false,
-//       sameSite: 'strict',
-//   });
+//   res.cookie('accessToken', "", { maxAge: 1000, httpOnly: true });
+//   res.clearCookie('accessToken');
+
+        
+//         res.cookie('refreshToken', "", {
+//             maxAge: 1000,
+//             httpOnly: true,
+//             secure: false, 
+//             sameSite: 'strict'
+//         });
+
+        
+
 
 //   return res.json({ msg: 'Logout successful' });
 // };
+const Logout = (req, res) => {
+  // Set the cookies with a past expiration date to clear them
+  res.cookie('accessToken', "", {
+    expires:'Thu, 01 Jan 1970 00:00:00 UTC',
+    httpOnly: true
+  });
+  res.clearCookie('accessToken');
+
+  res.cookie('refreshToken', "", {
+    expires: new Date(0),
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict'
+  });
+
+  res.clearCookie('refreshToken');
+
+  return res.json({ msg: 'Logout successful' });
+};
+
 
 
 
