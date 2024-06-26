@@ -3,7 +3,7 @@ const userModel = require("../Models/users");
 const CustomerModel = require("../Models/CustomerModel")
 const mongoose = require('mongoose');
 const CreateService = async (req, res) => {
-    const { vendor, name, description, price, address, location } = req.body;
+    const { vendor, name, description, price, address, location, category } = req.body;
   try {
     const IsVendor = await userModel.findById({_id:vendor});
   
@@ -20,7 +20,8 @@ const CreateService = async (req, res) => {
       description,
       price,
       address,
-      location
+      location,
+      category
     });
     return res.status(201).json({msg:"services created by Vendor",service})
   } catch (error) {

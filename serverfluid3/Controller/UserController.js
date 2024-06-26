@@ -87,6 +87,9 @@ const userSignup = async (req, res) => {
   }
   }
 
+
+
+
   const Login = async (req, res) => {
     const { email, password } = req.body;
 
@@ -231,6 +234,15 @@ const Logout = (req, res) => {
 
   return res.json({ msg: 'Logout successful' });
 };
+
+const Login2 = (req,res)=>{
+  const {name,mobile,email} = req.body;
+  try {
+    
+  } catch (error) {
+    
+  }
+}
 
 
 
