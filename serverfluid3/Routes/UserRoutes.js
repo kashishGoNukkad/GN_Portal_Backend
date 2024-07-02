@@ -1,6 +1,7 @@
 const express = require('express');
 const userRoutes = express.Router();
 const userController = require('../Controller/UserController');
+
 // const Verify = require('../Middleware/verify')
 // const upload = require('../Middelware/fileUpload')
 
@@ -12,5 +13,6 @@ userRoutes.post("/verifymail",userController.verifyMail);
 userRoutes.post("/logout",userController.Logout);
 userRoutes.post("/forgetmail",userController.forgetMail);
 userRoutes.post("/forgetmailcheck",userController.forgetMailCkeck);
+userRoutes.post("/Login2",userController.Login2);
 
 module.exports= userRoutes
