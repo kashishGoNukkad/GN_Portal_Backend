@@ -44,8 +44,10 @@ const Search = async (req, res) => {
 
         const response = filteredServices.map(service => ({
             name: service.name,
+            category: service.category,
+            price: service.price,
             address: service.address,
-            location: service.location
+            location: service.location,
         }));
 
         if (filteredServices.length > 0) {
