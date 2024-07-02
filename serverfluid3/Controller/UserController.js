@@ -1,4 +1,5 @@
 const RegisterModel = require('../Models/users');
+const newauth = require('../Models/newmodel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {sendEmail} = require('../Utils/Mailer')
@@ -235,12 +236,21 @@ const Logout = (req, res) => {
   return res.json({ msg: 'Logout successful' });
 };
 
-const Login2 = (req,res)=>{
+const Login2 = async (req,res)=>{
   const {name,mobile,email} = req.body;
+
   try {
+    const result = await newauth.findOne({email:email});
     
+    if(result) return res.status(201).json({msg:"user already exist with the given mail"});
+    const newuser = await newauth.create({
+      name,
+      mobile,
+      email
+    })
+    return res.status(201).json({msg:"Registered successfully"})
   } catch (error) {
-    
+    return res.status(400).json({error:" invalid credential"})
   }
 }
 
@@ -254,5 +264,6 @@ module.exports = {
     verifyMail,
     Logout,
     forgetMail,
-    forgetMailCkeck
+    forgetMailCkeck,
+    Login2
 };
