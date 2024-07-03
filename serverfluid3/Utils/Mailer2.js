@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const newauth = require("../Models/newmodel");
+const jwt = require('jsonwebtoken');
 
 
 const transporter = nodemailer.createTransport({
@@ -61,8 +62,12 @@ const verifyOTP = async (req, res) => {
     user.otpExpires = undefined;
     await user.save();
 
-    req.session.userId = user._id;
-    req.session.email = user.email;
+    // req.session.userId = user._id;
+    // req.session.email = user.email;
+
+    const connect = jwt.sign({ email: email2 }, "jwt-connect-token-secret-key", { expiresIn: '1hr' });
+
+    res.cookie('connect', connect, { maxAge: 300000, httpOnly: true });
     
     res.status(200).json({ msg: "OTP verified" });
   } catch (error) {

@@ -1,5 +1,6 @@
 const ServiceModel = require('../Models/ServiceModel');
 
+
 const Search = async (req, res) => {
     function isWithinRadius(serviceLocation, userLocation, radius) {
         const distance = getDistanceFromLatLonInKm(
@@ -57,8 +58,25 @@ const Search = async (req, res) => {
         }
     } catch (error) {
         console.error('Error searching for services:', error);
-        return res.status(500).json({ error: "An error occurred while searching for services" });
+         return res.status(500).json({ error: "An error occurred while searching for services" });
     }
 };
 
-module.exports = Search;
+
+const GetService =async (req, res) => {
+    try {
+        const connectID =await req.cookies.connect;
+        if (connectID) {
+            return res.status(200).json({ message: 'Connect ID found', connectID });
+        } else {
+            return res.status(401).json({ error: 'Connect ID not found' });
+        }
+    } catch (error) {
+        console.error('Error retrieving connect ID:', error);
+        return res.status(500).json({ error: 'Server error' });
+    }
+};
+
+
+
+module.exports = {Search, GetService};
