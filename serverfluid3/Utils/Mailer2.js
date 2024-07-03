@@ -63,7 +63,7 @@ const verifyOTP = async (req, res) => {
 
     req.session.userId = user._id;
     req.session.email = user.email;
-
+    
     res.status(200).json({ msg: "OTP verified" });
   } catch (error) {
     res.status(500).json({ error: "from verifyOTP Server error" });

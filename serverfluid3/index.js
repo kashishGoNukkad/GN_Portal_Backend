@@ -4,7 +4,7 @@ const cors = require('cors')
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')
-
+const helmet = require("helmet")
 const cookieParser = require('cookie-parser')
 const userroute = require('./Routes/UserRoutes')
 const DashRoute = require('./Routes/DashboardRoutes')
@@ -17,6 +17,7 @@ const Mailer2router = require('./Routes/mailer2Route')
 
 const app = express()
 app.use(express.json())
+app.use(helmet())
 app.use(cookieParser())
 app.use(cors({
     origin: ["http://localhost:3000"],
