@@ -9,6 +9,9 @@ const transporter = nodemailer.createTransport({
     user: "ankit.kumar@gonukkad.com",
     pass: "xkpapjdamtlltdcy",
   },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 const generateOtp = () => {
@@ -31,6 +34,7 @@ const requestOTP = async (req, res) => {
   const { name, mobile, email } = req.body;
   try {
     let user = await newauth.findOne({ email: email });
+    
     if (!user) {
       user = await newauth.create({ name, mobile, email });
     }
@@ -41,7 +45,8 @@ const requestOTP = async (req, res) => {
     await sendOTPMail(email, otp);
     res.status(200).json({ msg: "OTP sent to email" });
   } catch (error) {
-    res.status(500).json({ error: "from requestOTP Server error" });
+    console.log("error",error)
+    res.status(500).json({ error: error });
   }
 };
 const verifyOTP = async (req, res) => {
