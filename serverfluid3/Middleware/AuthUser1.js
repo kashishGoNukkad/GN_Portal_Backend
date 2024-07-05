@@ -2,7 +2,7 @@ const authMiddleware = (req, res, next) => {
     try {
         if (req.session && req.session.userId) {
             res.status(200).json({ msg: 'You are authenticated' });
-            console.log("C:",req.cookies);
+            // console.log("C:",req.cookies);
             next();
           } else {
             res.status(401).json({ error: 'Unauthorized' });
