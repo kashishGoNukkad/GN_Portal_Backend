@@ -62,8 +62,8 @@ const verifyOTP = async (req, res) => {
     user.otpExpires = undefined;
     await user.save();
 
-    // req.session.userId = user._id;
-    // req.session.email = user.email;
+    req.session.userId = user._id;
+    req.session.email = user.email;
 
     const connect = jwt.sign({ email: email2 }, "jwt-connect-token-secret-key", { expiresIn: '1hr' });
 
@@ -74,6 +74,11 @@ const verifyOTP = async (req, res) => {
     res.status(500).json({ error: "from verifyOTP Server error" });
   }
 };
+
+
+
+
+
 
 const logout = async (req, res) => {
   req.session.destroy((err) => {
