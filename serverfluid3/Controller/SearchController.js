@@ -63,19 +63,23 @@ const Search = async (req, res) => {
 };
 
 
-const GetService =async (req, res) => {
+
+const GetService = async (req, res) => {
     try {
-        const connectID =await req.cookies.connect;
-        if (connectID) {
-            return res.status(200).json({ message: 'Connect ID found', connectID });
-        } else {
-            return res.status(401).json({ error: 'Connect ID not found' });
-        }
+      const connectID = req.cookies['connect.sid'];
+      console.log("kashish", connectID);
+
+      if (connectID && connectID.length > 0) {
+        return res.status(200).json({ message: 'Connect ID found', connectID });
+      } else {
+        return res.status(401).json({ error: 'Connect ID not found' });
+      }
     } catch (error) {
-        console.error('Error retrieving connect ID:', error);
-        return res.status(500).json({ error: 'Server error' });
+      console.error('Error retrieving connect ID:', error);
+      return res.status(500).json({ error: 'Server error' });
     }
 };
+
 
 
 
